@@ -1,7 +1,5 @@
 import Landing from '../components/Landing/Landing';
 
-const HomePage = () => {
-  return <Landing />;
-};
+const HomePage = () => <Landing />;
 
 export default HomePage;

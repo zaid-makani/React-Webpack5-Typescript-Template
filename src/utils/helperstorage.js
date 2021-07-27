@@ -62,5 +62,5 @@ export default class LocalStorageStore {
       }
     }
   }
-  /// Here write something where, we will find all the keys with some fixed prefix and delete them all. This way your storage will become so optimized that, we can build simple helper in the ags side that clear_ags so we just have to pass the prefix and we are done. If we will not implement this right now then in the next product will have complications.
+  // / Here write something where, we will find all the keys with some fixed prefix and delete them all. This way your storage will become so optimized that, we can build simple helper in the ags side that clear_ags so we just have to pass the prefix and we are done. If we will not implement this right now then in the next product will have complications.
 }
