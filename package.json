@@ -17,7 +17,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "prepush": "eslint src/* --ext .js --fix"
+    "prepush": "eslint src/* --fix --ext .js"
   },
   "eslintConfig": {
     "extends": [
