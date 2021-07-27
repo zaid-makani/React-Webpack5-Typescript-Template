@@ -1,4 +1,4 @@
-import { useState, useRef, useContext } from 'react';
+import React, { useState, useRef, useContext } from 'react';
 import { useHistory } from 'react-router-dom';
 import classes from './AuthForm.module.css';
 import AuthContext from '../../store/auth-context';
@@ -25,7 +25,9 @@ const AuthForm = () => {
 
     setIsLoading(true);
 
-    let url;
+    let url = process.env.REACT_APP_FIREBASE_URL;
+
+    console.log(url);
 
     if (isLogin) {
       url =
@@ -73,17 +75,19 @@ const AuthForm = () => {
           <h1>{isLogin ? 'Login' : 'Sign Up'}</h1>
           <form onSubmit={onSubmitHandler}>
               <div className={classes.control}>
-                  <label htmlFor="email">Your Email</label>
-                  <input type="email" id="email" ref={emailInputRef} required />
+                  <label htmlFor="email">Your Email
+                      <input type="email" id="email" ref={emailInputRef} required />
+                  </label>
               </div>
               <div className={classes.control}>
-                  <label htmlFor="password">Your Password</label>
-                  <input
-                    type="password"
-                    id="password"
-                    ref={passwordInputRef}
-                    required
-                  />
+                  <label htmlFor="password">Your Password
+                      <input
+                        type="password"
+                        id="password"
+                        ref={passwordInputRef}
+                        required
+                      />
+                  </label>
               </div>
               <div className={classes.actions}>
                   {!isLoading && (

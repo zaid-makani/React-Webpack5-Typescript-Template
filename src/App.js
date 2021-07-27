@@ -1,5 +1,6 @@
+import React, { useContext } from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
-import { useContext } from 'react';
+
 import AuthContext from './store/auth-context';
 
 import Layout from './components/Layout/Layout';

@@ -19,6 +19,7 @@
     "prettier"
   ],
   "rules": {
+    "react/prop-types": ["off"],
     "react/jsx-indent": [1, 4],
     "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }]
   }

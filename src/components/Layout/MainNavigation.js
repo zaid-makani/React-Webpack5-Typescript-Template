@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 
 import AuthContext from '../../store/auth-context';
@@ -17,19 +17,19 @@ const MainNavigation = () => {
 
   return (
       <header className={classes.header}>
-          <Link to="/">
+          <Link href="/">
               <div className={classes.logo}>Graphite</div>
           </Link>
           <nav>
               <ul>
                   {!isLoggedIn && (
                   <li>
-                      <Link to="/auth">Login</Link>
+                      <Link href="/auth">Login</Link>
                   </li>
           )}
                   {isLoggedIn && (
                   <li>
-                      <Link to="/profile">Profile</Link>
+                      <Link href="/profile">Profile</Link>
                   </li>
           )}
                   {isLoggedIn && (
