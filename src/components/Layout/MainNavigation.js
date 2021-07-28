@@ -1,13 +1,12 @@
-import React, { useContext } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useContext } from "react";
+import { Link } from "react-router-dom";
 
-import AuthContext from '../../store/auth-context';
+import AuthContext from "../../store/auth-context";
 
-import classes from './MainNavigation.module.css';
+import classes from "./MainNavigation.module.css";
 
 const MainNavigation = () => {
   const authCtx = useContext(AuthContext);
-
 
   const { isLoggedIn } = authCtx;
 
@@ -16,30 +15,41 @@ const MainNavigation = () => {
   };
 
   return (
-      <header className={classes.header}>
-          <Link to="/" href="/">
-              <div className={classes.logo}>Graphite</div>
-          </Link>
-          <nav>
-              <ul>
-                  {!isLoggedIn && (
-                  <li>
-                      <Link to="/auth" href="/auth">Login</Link>
-                  </li>
+    <header className={classes.header}>
+      <Link to="/" href="/">
+        <div className={classes.logo}>Graphite</div>
+      </Link>
+      <nav>
+        <ul>
+          {!isLoggedIn && (
+            <li>
+              <Link to="/auth" href="/auth">
+                Login
+              </Link>
+            </li>
           )}
-                  {isLoggedIn && (
-                  <li>
-                      <Link to="/profile" href="/profile">Profile</Link>
-                  </li>
+          {isLoggedIn && (
+            <li>
+              <Link to="/appointments" href="/appointments">
+                Appointments
+              </Link>
+            </li>
           )}
-                  {isLoggedIn && (
-                  <li>
-                      <button onClick={logoutHandler}>Logout</button>
-                  </li>
+          {isLoggedIn && (
+            <li>
+              <Link to="/profile" href="/profile">
+                Profile
+              </Link>
+            </li>
           )}
-              </ul>
-          </nav>
-      </header>
+          {isLoggedIn && (
+            <li>
+              <button onClick={logoutHandler}>Logout</button>
+            </li>
+          )}
+        </ul>
+      </nav>
+    </header>
   );
 };
 
