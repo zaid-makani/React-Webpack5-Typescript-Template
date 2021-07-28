@@ -17,19 +17,19 @@ const MainNavigation = () => {
 
   return (
       <header className={classes.header}>
-          <Link href="/">
+          <Link to="/" href="/">
               <div className={classes.logo}>Graphite</div>
           </Link>
           <nav>
               <ul>
                   {!isLoggedIn && (
                   <li>
-                      <Link href="/auth">Login</Link>
+                      <Link to="/auth" href="/auth">Login</Link>
                   </li>
           )}
                   {isLoggedIn && (
                   <li>
-                      <Link href="/profile">Profile</Link>
+                      <Link to="/profile" href="/profile">Profile</Link>
                   </li>
           )}
                   {isLoggedIn && (

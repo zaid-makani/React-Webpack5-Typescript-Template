@@ -1,26 +1,35 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
+import LocalStorageStore from "../utils/helperstorage";
 
 const AuthContext = React.createContext({
-  token: '',
+  token: "",
   isLoggedIn: false,
-  login: (token) => { console.log(token); },
+  login: (token) => {
+    console.log(token);
+  },
   logout: () => {},
 });
 
 export const AuthContextProvider = (props) => {
-  const initialToken = localStorage.getItem('token');
+  const localStorage = new LocalStorageStore();
+  const tokenKey = localStorage.prepareKey(
+    "token",
+    process.env.REACT_APP_PREFIX
+  );
+
+  const initialToken = localStorage.getLocalData(tokenKey);
   const [token, setToken] = useState(initialToken);
 
   const userIsLoggedIn = !!token;
 
   const loginHandler = (loginToken) => {
     setToken(loginToken);
-    localStorage.setItem('token', loginToken);
+    localStorage.create(tokenKey, loginToken);
   };
 
   const logoutHandler = () => {
     setToken(null);
-    localStorage.removeItem('token');
+    localStorage.delete(tokenKey);
   };
 
   const contextValue = {
@@ -31,9 +40,9 @@ export const AuthContextProvider = (props) => {
   };
 
   return (
-      <AuthContext.Provider value={contextValue}>
-          {props.children}
-      </AuthContext.Provider>
+    <AuthContext.Provider value={contextValue}>
+      {props.children}
+    </AuthContext.Provider>
   );
 };
 
