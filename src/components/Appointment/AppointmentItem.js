@@ -5,10 +5,11 @@ import Card from "../../UI/Card";
 const AppointmentItem = (props) => {
   return (
     <Card className="expense-item">
-      <AppointmentDate date={props.date} />
+      <AppointmentDate date={props.apptDate} />
       <div>
-        <p>{props.participant}</p>
-        <p>{props.status}</p>
+        <p>{props.userName}</p>
+        <p>{props.userEmail}</p>
+        <p>{props.userPhone}</p>
       </div>
     </Card>
   );

@@ -1,36 +1,49 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import AppointmentList from "./AppointmentList";
 import AppointmentFilter from "./AppointmentFilter";
 import Card from "../../UI/Card";
-
-const dummy_appointments = [
-  {
-    id: "1",
-    date: new Date(2021, 10, 14, 18, 0, 0),
-    participant: "Ramesh Kumar",
-    participantID: "100",
-    status: "pending",
-  },
-  {
-    id: "2",
-    date: new Date(2021, 11, 15, 18, 0, 0),
-    participant: "Ravi Mehta",
-    participantID: "101",
-    status: "pending",
-  },
-];
+import axios from "axios";
 
 const Appointments = () => {
-
-  const [filteredYear, setFilteredYear] = useState('2021');
+  const [appointments, setAppointments] = useState([]);
+  const [filteredYear, setFilteredYear] = useState("2021");
 
   const onYearChangeHandler = (selectedYear) => {
     setFilteredYear(selectedYear);
   };
 
+  const fetchAppointments = useCallback(async () => {
+    let url = process.env.REACT_APP_REALTIME_DATABASE + "appointments.json";
 
-  const filteredAppointments = dummy_appointments.filter(
-    (expense) => expense.date.getFullYear().toString() === filteredYear
+    try {
+      const resp = await axios.get(url);
+
+      let loadedAppointments = [];
+
+      for (const key in resp["data"]) {
+        loadedAppointments.push({
+          id: key,
+          userName: resp["data"][key].userName,
+          userEmail: resp["data"][key].userEmail,
+          userPhone: resp["data"][key].userPhone,
+          apptDate: new Date(resp["data"][key].apptDate),
+        });
+      }
+
+      console.log(loadedAppointments);
+      setAppointments(loadedAppointments);
+    } catch (error) {
+      console.log(error);
+    }
+  }, []);
+
+  useEffect(() => {
+    fetchAppointments();
+  }, [fetchAppointments]);
+
+  const filteredAppointments = appointments.filter(
+    (appointment) =>
+      appointment.apptDate.getFullYear().toString() === filteredYear
   );
 
   return (
