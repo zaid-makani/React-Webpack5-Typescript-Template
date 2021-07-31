@@ -8,6 +8,7 @@ import AuthPage from "./pages/AuthPage";
 import HomePage from "./pages/HomePage";
 import ProfilePage from "./pages/ProfilePage";
 import AppointmentsPage from "./pages/AppointmentPage";
+import MeetingPage from "./pages/MeetingPage";
 
 function App() {
   const authCtx = useContext(AuthContext);
@@ -33,6 +34,11 @@ function App() {
         {isLoggedIn && (
           <Route path="/appointments">
             <AppointmentsPage />
+          </Route>
+        )}
+        {isLoggedIn && (
+          <Route path="/meeting">
+            <MeetingPage />
           </Route>
         )}
         <Route path="*">
