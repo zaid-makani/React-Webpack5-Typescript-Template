@@ -1,7 +1,7 @@
-import './styles.css';
-import IMAGE from './ReactPng.png';
-import LOGO from './react-seeklogo.com.svg';
-import ClickCounter from './ClickCounter';
+import './styles.css'
+import IMAGE from './ReactPng.png'
+import LOGO from './react-seeklogo.com.svg'
+import ClickCounter from './ClickCounter'
 
 const App = () => {
   return (
@@ -11,6 +11,6 @@ const App = () => {
       <img src={LOGO} alt="React Logo" />
       <ClickCounter />
     </div>
-  );
-};
-export default App;
+  )
+}
+export default App
